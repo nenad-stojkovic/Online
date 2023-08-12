@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+    
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>JavaScript Classes</title>
+        <style>
+        </style>
+    </head>
+    <body>    
+        <script>
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET','countries.json');
+            xhr.responseType = 'json';
+            xhr.send();
+            xhr.onload = function () {
+                let countries = xhr.response;
+                for (let i = 0; i < countries.length;i++) {
+                    document.body.innerHTML += '<h2>' + countries[i].name +'</h2>';
+                    document.body.innerHTML += '<p>Country code: ' + countries[i].countryCode + '</p>';
+                    document.body.innerHTML += '<p>Capital: ' + countries[i].capital + '</p>';
+                    document.body.innerHTML += '<p>Description: ' + countries[i].description + '</p>';
+                
+                }
+            };
+            xhr.onerror = function () {
+                console.log('Network Error');
+            };
+            xhr.onprogress = function (event) {console.log('Recived ' + event.loaded + ' of ' + event.total);};
+            </script>
+    </body></html>
